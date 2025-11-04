@@ -7,7 +7,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import {Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { useRouter } from "next/navigation";
+import { Button } from "./ui/button";
 
 
 const UserDropdown = () => {
@@ -17,11 +19,18 @@ const UserDropdown = () => {
     router.push("/sign-in");
   }
 
-
+  const user = { name: 'Gab', email: 'gabrielezekieleduria@gmail.com' };
 
   return (
     <DropdownMenu>
-     <DropdownMenuTrigger>Open</DropdownMenuTrigger>
+     <DropdownMenuTrigger asChild>
+        <Button variant="ghost" className="flex items-center gap-3 text-gray-4 hover:text-yellow-500">
+            <Avatar>
+                 <AvatarImage src="https://github.com/shadcn.png" />
+                  <AvatarFallback>CN</AvatarFallback>
+            </Avatar>
+        </Button>
+     </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
