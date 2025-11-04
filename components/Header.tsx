@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import NavItems from "./NavItems";
-import UserDropdown from "./userDropdown";
+import UserDropdown from "./UserDropdown";
 
 
 const Header = () => {
