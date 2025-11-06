@@ -24,7 +24,6 @@ const NavItems = () => {
                }`}>
                   {label}
                   {label}
-                  {label}
                </Link>
             </li>
         ))}
