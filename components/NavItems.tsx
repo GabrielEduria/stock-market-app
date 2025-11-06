@@ -23,7 +23,7 @@ const NavItems = () => {
                   isActive(href) ? 'text-gray-100' : ''
                }`}>
                   {label}
-                  {label}
+
                </Link>
             </li>
         ))}
