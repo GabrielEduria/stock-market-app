@@ -307,7 +307,6 @@ export const POPULAR_STOCK_SYMBOLS = [
     'LCID',
     'NIO',
 
-    // International Companies
     'XPEV',
     'LI',
     'BABA',
