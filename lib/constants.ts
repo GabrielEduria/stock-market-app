@@ -262,6 +262,7 @@ export const COMPANY_FINANCIALS_WIDGET_CONFIG = (symbol: string) => ({
 });
 
 export const POPULAR_STOCK_SYMBOLS = [
+
     'AAPL',
     'MSFT',
     'GOOGL',
@@ -273,7 +274,6 @@ export const POPULAR_STOCK_SYMBOLS = [
     'ORCL',
     'CRM',
 
-    // Growing Tech Companies
     'ADBE',
     'INTC',
     'AMD',
