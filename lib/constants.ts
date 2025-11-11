@@ -44,7 +44,7 @@ export const MARKET_OVERVIEW_WIDGET_CONFIG = {
     isTransparent: true, 
     showFloatingTooltip: true, 
     plotLineColorGrowing: '#0FEDBE',
-    plotLineColorFalling: '#0FEDBE', // line color when price falls
+    plotLineColorFalling: '#0FEDBE', 
     gridLineColor: 'rgba(240, 243, 250, 0)', // grid line color
     scaleFontColor: '#DBDBDB', // font color for scale
     belowLineFillColorGrowing: 'rgba(41, 98, 255, 0.12)', // fill under line when growing
