@@ -43,7 +43,7 @@ export const MARKET_OVERVIEW_WIDGET_CONFIG = {
     largeChartUrl: '', 
     isTransparent: true, 
     showFloatingTooltip: true, 
-    plotLineColorGrowing: '#0FEDBE', // line color when price goes up
+    plotLineColorGrowing: '#0FEDBE',
     plotLineColorFalling: '#0FEDBE', // line color when price falls
     gridLineColor: 'rgba(240, 243, 250, 0)', // grid line color
     scaleFontColor: '#DBDBDB', // font color for scale
