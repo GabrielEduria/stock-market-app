@@ -1,9 +1,17 @@
-import { Button } from '@/components/ui/button'
+import TradingViewWidget from '@/components/charts/TradingViewWidget'
 
 const Home = () => {
   return (
     <div className='flex min-h-screen home-wrapper'>
-      <Button>Kiss Me</Button>
+       <section className='grid w-full gap-8 home-section'>
+          <div className='md:col-span-1 xl:col-span-1'>
+              <TradingViewWidget
+                 title="Market Overview"
+                 scriptUrl=""
+              />
+          </div>
+
+       </section>
     </div>
   )
 }
