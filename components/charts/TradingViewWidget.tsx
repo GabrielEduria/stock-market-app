@@ -7,26 +7,15 @@ import useTradingViewWidget from '@/hooks/useTradingViewWidget';
 
 interface TradingViewWidgetProps {
   title?: string;
-  scriptrl: string;
+  scriptURL: string;
   config: Record<string, unknown>
   height?: number;
   className?: string;
 }
 
-function TradingViewWidget({title, scriptURL, config, height = 600, className }: TradingViewWidgetProps) {
-  const container = useTradingViewWidget();
+function TradingViewWidget({ title, scriptURL, config, height = 600, className }: TradingViewWidgetProps) {
+  const container = useTradingViewWidget( scriptURL: scriptURL, config, height );
 
-  useEffect(
-    () => {
-      const script = document.createElement("script");
-      script.src = "https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js";
-      script.type = "text/javascript";
-      script.async = true;
-      script.innerHTML = ``;
-      container.current.appendChild(script);
-    },
-    []
-  );
 
   return (
     <div className="tradingview-widget-container" ref={container} style={{ height: "100%", width: "100%" }}>
