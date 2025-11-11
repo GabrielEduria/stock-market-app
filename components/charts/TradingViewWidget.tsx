@@ -1,9 +1,20 @@
 'use client';
 
-import React, { useEffect, useRef, memo } from 'react';
 
-function TradingViewWidget() {
-  const container = useRef();
+import React, { useEffect, useRef, memo } from 'react';
+import useTradingViewWidget from '@/hooks/useTradingViewWidget';
+
+
+interface TradingViewWidgetProps {
+  title?: string;
+  scriptrl: string;
+  config: Record<string, unknown>
+  height?: number;
+  className?: string;
+}
+
+function TradingViewWidget({title, scriptURL, config, height = 600, className }: TradingViewWidgetProps) {
+  const container = useTradingViewWidget();
 
   useEffect(
     () => {
