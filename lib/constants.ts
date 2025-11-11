@@ -47,7 +47,7 @@ export const MARKET_OVERVIEW_WIDGET_CONFIG = {
     plotLineColorFalling: '#0FEDBE', 
     gridLineColor: 'rgba(240, 243, 250, 0)', 
     scaleFontColor: '#DBDBDB', 
-    belowLineFillColorGrowing: 'rgba(41, 98, 255, 0.12)', // fill under line when growing
+    belowLineFillColorGrowing: 'rgba(41, 98, 255, 0.12)',
     belowLineFillColorFalling: 'rgba(41, 98, 255, 0.12)', // fill under line when falling
     belowLineFillColorGrowingBottom: 'rgba(41, 98, 255, 0)',
     belowLineFillColorFallingBottom: 'rgba(41, 98, 255, 0)',
