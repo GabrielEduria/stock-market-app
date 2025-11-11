@@ -87,8 +87,8 @@ export const MARKET_OVERVIEW_WIDGET_CONFIG = {
         },
     ],
     support_host: 'https://www.tradingview.com', 
-    backgroundColor: '#141414', // background color
-    width: '100%', // full width
+    backgroundColor: '#141414',
+    width: '100%', 
     height: 600, // height in px
     showSymbolLogo: true, // show logo next to symbols
     showChart: true, // display mini chart
