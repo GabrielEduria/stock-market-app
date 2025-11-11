@@ -285,7 +285,6 @@ export const POPULAR_STOCK_SYMBOLS = [
     'SHOP',
     'ROKU',
 
-    // Newer Tech Companies
     'SNOW',
     'PLTR',
     'COIN',
@@ -297,7 +296,6 @@ export const POPULAR_STOCK_SYMBOLS = [
     'TWLO',
     'ZM',
 
-    // Consumer & Delivery Apps
     'DOCU',
     'PTON',
     'PINS',
