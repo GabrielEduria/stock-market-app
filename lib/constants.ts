@@ -1,7 +1,7 @@
 export const NAV_ITEMS = [
     { href: '/', label: 'Dashboard' },
     { href: '/search', label: 'Search' },
-    { href: '/profile', label: 'Profile' },
+    { href: '/watchlist', label: 'Watchlist' },
 ];
 
 export const INVESTMENT_GOALS = [
