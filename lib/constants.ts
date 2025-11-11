@@ -89,7 +89,7 @@ export const MARKET_OVERVIEW_WIDGET_CONFIG = {
     support_host: 'https://www.tradingview.com', 
     backgroundColor: '#141414',
     width: '100%', 
-    height: 600, // height in px
+    height: 600, 
     showSymbolLogo: true, // show logo next to symbols
     showChart: true, // display mini chart
 };
