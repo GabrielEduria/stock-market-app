@@ -17,6 +17,7 @@ function TradingViewWidget({ title, scriptURL, config, height = 600, className }
   const container = useTradingViewWidget( scriptURL: scriptURL, config, height );
 
 
+
   return (
     <div className="tradingview-widget-container" ref={container} style={{ height: "100%", width: "100%" }}>
       <div className="tradingview-widget-container__widget" style={{ height: "calc(100% - 32px)", width: "100%" }}></div>
