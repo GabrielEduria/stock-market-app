@@ -40,7 +40,7 @@ export const MARKET_OVERVIEW_WIDGET_CONFIG = {
     colorTheme: 'dark', 
     dateRange: '12M', 
     locale: 'en', 
-    largeChartUrl: '', // link to a large chart if needed
+    largeChartUrl: '', 
     isTransparent: true, // makes background transparent
     showFloatingTooltip: true, // show tooltip on hover
     plotLineColorGrowing: '#0FEDBE', // line color when price goes up
