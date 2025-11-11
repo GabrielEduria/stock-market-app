@@ -91,7 +91,7 @@ export const MARKET_OVERVIEW_WIDGET_CONFIG = {
     width: '100%', 
     height: 600, 
     showSymbolLogo: true, 
-    showChart: true, // display mini chart
+    showChart: true, 
 };
 
 export const HEATMAP_WIDGET_CONFIG = {
