@@ -42,7 +42,7 @@ export const MARKET_OVERVIEW_WIDGET_CONFIG = {
     locale: 'en', 
     largeChartUrl: '', 
     isTransparent: true, 
-    showFloatingTooltip: true, // show tooltip on hover
+    showFloatingTooltip: true, 
     plotLineColorGrowing: '#0FEDBE', // line color when price goes up
     plotLineColorFalling: '#0FEDBE', // line color when price falls
     gridLineColor: 'rgba(240, 243, 250, 0)', // grid line color
