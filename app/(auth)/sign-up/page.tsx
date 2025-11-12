@@ -60,11 +60,10 @@ const SignUp = () => {
                     name="selectCountry"
                     label="Country"
                     placeholder="🇵🇭  Philippines"
-                    error={errors.investmentGoals}
+                    error={errors.country}
                     required
                 />      
                 
-
                 <InputField 
                     name="password"
                     label="Password"
@@ -74,7 +73,6 @@ const SignUp = () => {
                     error={errors.password}
                     validation={{ required: 'Password is required', minLength: 8 }}        
                 />               
-                
                 
                 <SelectField 
                     name="investmentGoals"
