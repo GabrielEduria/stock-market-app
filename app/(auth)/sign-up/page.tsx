@@ -65,7 +65,6 @@ const SignUp = () => {
                         validation={{ required: 'Password is required', minLength: 8 }}        
                 />               
                 
-                {/*  Country */}
                 
                 <SelectField 
                   name="investmentGoals"
