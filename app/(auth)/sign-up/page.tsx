@@ -3,7 +3,7 @@
 import InputField from "@/components/forms/InputField";
 import SelectField from "@/components/forms/SelectField";
 import { Button } from "@/components/ui/button";
-import { INVESTMENT_GOALS } from "@/lib/constants";
+import { INVESTMENT_GOALS, PREFERRED_INDUSTRIES, RISK_TOLERANCE_OPTIONS } from "@/lib/constants";
 import {useForm} from "react-hook-form";
 
 const SignUp = () => {
@@ -40,29 +40,40 @@ const SignUp = () => {
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
                 <InputField 
-                        name="fullName"
-                        label="Full Name"
-                        placeholder="Pedro Delacruz"
-                        error={errors.fullName}
-                        validation={{ required: 'Full name is required', minLength: 2 }} register={undefined}            
+                    name="fullName"
+                    label="Full Name"
+                    placeholder="Pedro Delacruz"
+                    error={errors.fullName}
+                    validation={{ required: 'Full name is required', minLength: 2 }} register={undefined}            
                 />
 
                 <InputField 
-                        name="email"
-                        label="Email"
-                        placeholder="pedrodelacruz@gmail.com"
-                        error={errors.email}
-                        validation={{ required: 'email is required', pattern: /^\w+@\w+\.\w+$/, message: "email address is required" }} register={undefined}            
+                    name="email"
+                    label="Email"
+                    placeholder="pedrodelacruz@gmail.com"
+                    error={errors.email}
+                    validation={{ required: 'email is required', pattern: /^\w+@\w+\.\w+$/, message: "email address is required" }} register={undefined}            
                 />
+ 
+                 <InputField 
+                    name="password"
+                    label="Password"
+                    placeholder="Enter a strong password"
+                    type="password"
+                    register={register}
+                    error={errors.password}
+                    validation={{ required: 'Password is required', minLength: 8 }}        
+                />               
+                
 
                 <InputField 
-                        name="password"
-                        label="Password"
-                        placeholder="Enter a strong password"
-                        type="password"
-                        register={register}
-                        error={errors.password}
-                        validation={{ required: 'Password is required', minLength: 8 }}        
+                    name="password"
+                    label="Password"
+                    placeholder="Enter a strong password"
+                    type="password"
+                    register={register}
+                    error={errors.password}
+                    validation={{ required: 'Password is required', minLength: 8 }}        
                 />               
                 
                 
@@ -76,6 +87,26 @@ const SignUp = () => {
                   required
                 />
                   
+                <SelectField 
+                  name="riskTolerance"
+                  label="Risk Tolerance"
+                  placeholder="Select your risk level"
+                  options={RISK_TOLERANCE_OPTIONS}
+                  control={control}
+                  error={errors.riskTolerance}
+                  required
+                />
+
+                <SelectField 
+                  name="preferredIndustry"
+                  label="Preferred Industry"
+                  placeholder="Select your preferred industry"
+                  options={PREFERRED_INDUSTRIES}
+                  control={control}
+                  error={errors.preferredIndustry}
+                  required
+                />
+
                 <Button type="submit" disabled={isSubmitting} className="yellow-btn w-full mt-5">
                     {isSubmitting ? 'Creating Account' : 'Start Your Investing Journey'}
                 </Button>
