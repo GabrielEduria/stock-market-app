@@ -10,7 +10,7 @@ const useTradingViewWidget = (scriptURL: string, config: Record<string, unknown>
 
 
          const script = document.createElement("script");
-         script.src = "scriptURL";
+         script.src = scriptURL;
          script.async = true;
          script.innerHTML = JSON.stringify(config);
          containerRef.current.appendChild(script);
