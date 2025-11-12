@@ -57,14 +57,12 @@ const SignUp = () => {
                 />
  
                 <CountrySelectField
-                    name="selecCountry"
+                    name="selectCountry"
                     label="Country"
-                    placeholder={"Select your investment goal"}
-                    options={INVESTMENT_GOALS}
-                    control={control}
+                    placeholder="🇵🇭  Philippines"
                     error={errors.investmentGoals}
                     required
-                />        
+                />      
                 
 
                 <InputField 

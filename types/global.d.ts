@@ -17,10 +17,14 @@ declare global {
     type CountrySelectProps = {
         name: string;
         label: string;
-        control: Control;
-        error?: FieldError;
+        placeholder?: string;
+        error?: { message?: string };
         required?: boolean;
+        disabled?: boolean;
+        value?: string;
+        onChange?: (value: string) => void;
     };
+
 
     type FormInputProps = {
         name: string;
