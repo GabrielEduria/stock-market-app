@@ -22,7 +22,7 @@ export default function Home () {
                 title="Stock Heatmap"
                 scriptURL={`${scriptUrl}stock-heatmap.js`}
                 config={HEATMAP_WIDGET_CONFIG} 
-                className="custom-chart"
+  
                 height={600}
               />
           </div>
@@ -30,8 +30,7 @@ export default function Home () {
        <section className='grid w-full gap-8 home-section'>
           <div className='h-full md:col-span-1 xl:col-span-1'>
               <TradingViewWidget
-                title="Market Overview"
-                scriptURL={`${scriptUrl}timeline`} 
+                scriptURL={`${scriptUrl}timeline.js`} 
                 config={TOP_STORIES_WIDGET_CONFIG} 
                 className="custom-chart"
                 height={600}
@@ -39,10 +38,9 @@ export default function Home () {
           </div>
           <div className='h-full md:col-span-1 xl:col-span-2'>
               <TradingViewWidget
-                title="Stock Heatmap"
-                scriptURL={`${scriptUrl}stock-heatmap.js`}
+                scriptURL={`${scriptUrl}market-quotes.js`}
                 config={MARKET_DATA_WIDGET_CONFIG} 
-                className="custom-chart"
+
                 height={600}
               />
           </div>
