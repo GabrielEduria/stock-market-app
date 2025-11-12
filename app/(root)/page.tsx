@@ -14,7 +14,15 @@ export default function Home () {
                 height={600}
               />
           </div>
-
+          <div className='md-col-span xl:col-span-2'>
+              <TradingViewWidget
+                title="Market Overview"
+                scriptURL="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js"   
+                config={MARKET_DATA_WIDGET_CONFIG} 
+                className="custom-chart"
+                height={600}
+              />
+          </div>
        </section>
     </div>
   )
