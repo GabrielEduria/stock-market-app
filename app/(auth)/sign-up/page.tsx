@@ -1,5 +1,6 @@
 'use client';
 
+import CountrySelectField from "@/components/forms/CountrySelectField";
 import InputField from "@/components/forms/InputField";
 import SelectField from "@/components/forms/SelectField";
 import { Button } from "@/components/ui/button";
@@ -55,15 +56,15 @@ const SignUp = () => {
                     validation={{ required: 'email is required', pattern: /^\w+@\w+\.\w+$/, message: "email address is required" }} register={undefined}            
                 />
  
-                 <InputField 
-                    name="password"
-                    label="Password"
-                    placeholder="Enter a strong password"
-                    type="password"
-                    register={register}
-                    error={errors.password}
-                    validation={{ required: 'Password is required', minLength: 8 }}        
-                />               
+                <CountrySelectField
+                    name="selecCountry"
+                    label="Country"
+                    placeholder={"Select your investment goal"}
+                    options={INVESTMENT_GOALS}
+                    control={control}
+                    error={errors.investmentGoals}
+                    required
+                />        
                 
 
                 <InputField 
@@ -78,33 +79,33 @@ const SignUp = () => {
                 
                 
                 <SelectField 
-                  name="investmentGoals"
-                  label="Investment Goals"
-                  placeholder="Select your investment goal"
-                  options={INVESTMENT_GOALS}
-                  control={control}
-                  error={errors.investmentGoals}
-                  required
+                    name="investmentGoals"
+                    label="Investment Goals"
+                    placeholder="Select your investment goal"
+                    options={INVESTMENT_GOALS}
+                    control={control}
+                    error={errors.investmentGoals}
+                    required
                 />
                   
                 <SelectField 
-                  name="riskTolerance"
-                  label="Risk Tolerance"
-                  placeholder="Select your risk level"
-                  options={RISK_TOLERANCE_OPTIONS}
-                  control={control}
-                  error={errors.riskTolerance}
-                  required
+                    name="riskTolerance"
+                    label="Risk Tolerance"
+                    placeholder="Select your risk level"
+                    options={RISK_TOLERANCE_OPTIONS}
+                    control={control}
+                    error={errors.riskTolerance}
+                    required
                 />
 
                 <SelectField 
-                  name="preferredIndustry"
-                  label="Preferred Industry"
-                  placeholder="Select your preferred industry"
-                  options={PREFERRED_INDUSTRIES}
-                  control={control}
-                  error={errors.preferredIndustry}
-                  required
+                    name="preferredIndustry"
+                    label="Preferred Industry"
+                    placeholder="Select your preferred industry"
+                    options={PREFERRED_INDUSTRIES}
+                    control={control}
+                    error={errors.preferredIndustry}
+                    required
                 />
 
                 <Button type="submit" disabled={isSubmitting} className="yellow-btn w-full mt-5">
