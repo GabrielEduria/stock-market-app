@@ -1,14 +1,17 @@
 import TradingViewWidget from '@/components/charts/TradingViewWidget'
-import { MARKET_DATA_WIDGET_CONFIG } from '@/lib/constants'
+import { HEATMAP_WIDGET_CONFIG, MARKET_DATA_WIDGET_CONFIG, TOP_STORIES_WIDGET_CONFIG } from '@/lib/constants'
 
 export default function Home () {
+
+  const scriptUrl = `https://s3.tradingview.com/external-embedding/embed-widget-`
+
   return (
     <div className='flex min-h-screen home-wrapper'>
        <section className='grid w-full gap-8 home-section'>
           <div className='md:col-span-1 xl:col-span-1'>
               <TradingViewWidget
                 title="Market Overview"
-                scriptURL="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js"   
+                scriptURL={`${scriptUrl}market-overview.js`} 
                 config={MARKET_DATA_WIDGET_CONFIG} 
                 className="custom-chart"
                 height={600}
@@ -16,8 +19,28 @@ export default function Home () {
           </div>
           <div className='md-col-span xl:col-span-2'>
               <TradingViewWidget
+                title="Stock Heatmap"
+                scriptURL={`${scriptUrl}stock-heatmap.js`}
+                config={HEATMAP_WIDGET_CONFIG} 
+                className="custom-chart"
+                height={600}
+              />
+          </div>
+       </section>
+       <section className='grid w-full gap-8 home-section'>
+          <div className='h-full md:col-span-1 xl:col-span-1'>
+              <TradingViewWidget
                 title="Market Overview"
-                scriptURL="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js"   
+                scriptURL={`${scriptUrl}timeline`} 
+                config={TOP_STORIES_WIDGET_CONFIG} 
+                className="custom-chart"
+                height={600}
+              />
+          </div>
+          <div className='h-full md:col-span-1 xl:col-span-2'>
+              <TradingViewWidget
+                title="Stock Heatmap"
+                scriptURL={`${scriptUrl}stock-heatmap.js`}
                 config={MARKET_DATA_WIDGET_CONFIG} 
                 className="custom-chart"
                 height={600}
