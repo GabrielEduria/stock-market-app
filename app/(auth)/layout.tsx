@@ -22,13 +22,10 @@ export default function layout ({ children }: { children : React.ReactNode}) {
         <section className="auth-right-section">
             <div className="z-10 relative lg:mt-4 lg:mb-16">
                 <blockquote className="auth-blockquote">
-                    Stockmarket app by <a href="https://gabrieleduria.com" className="text-blue-500">Gabbbyyyy</a>  to help you check out the current market live.
+                    Stockmarket app by <a href="https://gabrieleduria.com" className="text-blue-400 underline hover:text-red-400 transition-0.2s">Gabbbyyyy</a>  to help you check out the current market live.
                 </blockquote>
                 <div className="flex items-center justify-between">
-                    <div>
-                        <cite className="auth-testimonial-author"> Ethan R.</cite>
-                        <p className="max-md:text-xs text-gray-500">Retail Investor</p>
-                    </div>
+           
                     <div className="flex items-center gap-0.5">
                         {[1, 2, 3, 4, 5].map((star) => (
                             <Image src="/public/assets/icons/star.svg" alt="Star" key={star} width={20} height={20} className="w-5 h-5" />
