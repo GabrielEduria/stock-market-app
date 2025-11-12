@@ -10,6 +10,8 @@ export default function Home () {
                 title="Market Overview"
                 scriptURL="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js"   
                 config={MARKET_DATA_WIDGET_CONFIG} 
+                className="custom-chart"
+                height={600}
               />
           </div>
 
