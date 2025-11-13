@@ -54,6 +54,46 @@ export const sendDailyNewsSummary = inngest.createFunction(
     async ({ step }) => {
         const users = await step.run('get-all-users', getAllusersForNewsEmail)
 
-        if(!users || users.length === 0) return { success: false, message: 'No users found for news email' };
+        if(!users || users.length === 0) return { success: true, message: 'No users found for news email' };
+
+        for (const user of users) {
+            try {
+                const email = String(user.email ?? '');
+                if (!email) continue;
+
+                const symbols = await step.run('get-watchlist-symbols', async () => {
+                    const { getWatchlistSymbolsByEmail } = await import('../actions/watchlist-actions');
+                    return getWatchlistSymbolsByEmail(email);
+                });
+
+                let articles = await step.run('fetch-news', async () => {
+                    const { getNews } = await import('../actions/finnhub.actions');
+                    return getNews(symbols.length > 0 ? symbols : undefined);
+                });
+
+                if (!articles || articles.length === 0) {
+                    articles = await step.run('fetch-general-news', async () => {
+                        const { getNews } = await import('../actions/finnhub.actions');
+                        return getNews(undefined);
+                    });
+                }
+
+                // Placeholder: Summarize news via AI
+                // const summary = await step.ai.infer('summarize-news', { ... });
+
+                // Placeholder: Send the emails
+                // await step.run('send-email', async () => { ... });
+
+                // For now, log the action
+                await step.run('log-email', async () => {
+                    console.log(`Would send ${articles.length} news articles to ${email}`);
+                });
+            } catch (err) {
+                console.error('sendDailyNewsSummary: failed for user', user, err);
+                continue;
+            }
+        }
+
+        return { success: true };
     }
 )

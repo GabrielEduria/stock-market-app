@@ -1,67 +1,98 @@
 "use server";
 
-import { sendSignUpEmail } from "../inngest/function";
-import { getAllusersForNewsEmail } from "./user.action";
+import { getDateRange, validateArticle, formatArticle } from "../utils";
 
-export const functions = inngest()
-.on({ name: 'sendSignUpEmail' }, async ({ event }) => {
-return await sendSignUpEmail(event);
-});
+const FINNHUB_BASE_URL = "https://finnhub.io/api/v1";
+const NEXT_PUBLIC_FINNHUB_API_KEY = process.env.NEXT_PUBLIC_FINNHUB_API_KEY;
 
-
-// add daily news summary function
-export const sendDailyNewsSummary = functions.on({
-name: 'sendDailyNewsSummary',
-// Cron: run daily at 12:00 UTC
-schedule: '0 12 * * *',
-// allow manual triggering via event
-event: 'app/send.daily.news',
-}, async ({ event }) => {
-try {
-// Get list of users eligible for news emails
-const users = await getAllusersForNewsEmail();
-if (!users || users.length === 0) return { success: true, details: 'no users' };
-
-
-for (const user of users) {
-try {
-const email = String(user.email ?? '');
-if (!email) continue;
-
-
-const symbols = await getWatchlistSymbolsByEmail(email);
-let articles = await getNews(symbols.length > 0 ? symbols : undefined);
-
-
-if (!articles || articles.length === 0) {
-// fallback to general news
-articles = await getNews(undefined);
+interface RawNewsArticle {
+  id: number;
+  headline: string;
+  summary: string;
+  url: string;
+  datetime: number;
+  source: string;
+  image?: string;
+  category?: string;
+  related?: string;
 }
 
-
-// At this point we have up to 6 articles. Placeholder: summarize via AI
-// const summary = await summarizeArticlesWithAI(articles, user);
-
-
-// Placeholder: send email via project's email util
-// await sendNewsEmailToUser({ to: email, articles, summary, user });
-
-
-// For now we just log that we'd send the email
-// eslint-disable-next-line no-console
-console.log(`Would send ${articles.length} news articles to ${email}`);
-} catch (err) {
-// eslint-disable-next-line no-console
-console.error('sendDailyNewsSummary: failed for user', user, err);
-continue; // keep processing other users
-}
+interface FormattedArticle {
+  id: number | string;
+  headline: string;
+  summary: string;
+  source: string;
+  url: string;
+  datetime: number;
+  image: string;
+  category: string;
+  related: string;
 }
 
+async function fetchJSON<T = unknown>(url: string, revalidateSeconds?: number): Promise<T> {
+  const options: RequestInit = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
 
-return { success: true };
-} catch (err) {
-// eslint-disable-next-line no-console
-console.error('sendDailyNewsSummary failed:', err);
-return { success: false, error: String(err) };
+  if (revalidateSeconds) {
+    options.next = { revalidate: revalidateSeconds };
+  } else {
+    options.cache = "no-store";
+  }
+
+  const response = await fetch(url, options);
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+  return response.json();
 }
-});
+
+export async function getNews(symbols?: string[]): Promise<FormattedArticle[]> {
+  try {
+    const { from, to } = getDateRange(5);
+
+    if (symbols && symbols.length > 0) {
+      const cleanedSymbols = symbols.map(s => s.toUpperCase().trim());
+      const articles: FormattedArticle[] = [];
+      const maxRounds = 6;
+
+      for (let round = 0; round < maxRounds && articles.length < 6; round++) {
+        for (const symbol of cleanedSymbols) {
+          if (articles.length >= 6) break;
+          try {
+            const url = `${FINNHUB_BASE_URL}/company-news?symbol=${symbol}&from=${from}&to=${to}&token=${NEXT_PUBLIC_FINNHUB_API_KEY}`;
+            const data: RawNewsArticle[] = await fetchJSON(url);
+            const validArticles = data.filter(validateArticle);
+            if (validArticles.length > 0) {
+              const article = validArticles[0];
+              articles.push(formatArticle(article, true, symbol, round));
+            }
+          } catch (err) {
+            console.error(`Failed to fetch news for ${symbol}:`, err);
+          }
+        }
+      }
+
+      return articles.sort((a, b) => b.datetime - a.datetime);
+    } else {
+      const url = `${FINNHUB_BASE_URL}/news?category=general&token=${NEXT_PUBLIC_FINNHUB_API_KEY}`;
+      const data: RawNewsArticle[] = await fetchJSON(url);
+
+      const seen = new Set<string>();
+      const uniqueArticles = data.filter(article => {
+        const key = `${article.id}-${article.url}-${article.headline}`;
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return validateArticle(article);
+      });
+
+      return uniqueArticles.slice(0, 6).map((article, index) => formatArticle(article, false, undefined, index));
+    }
+  } catch (error) {
+    console.error("Failed to fetch news:", error);
+    throw new Error("Failed to fetch news");
+  }
+}
