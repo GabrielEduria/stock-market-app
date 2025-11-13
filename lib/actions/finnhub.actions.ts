@@ -1,5 +1,7 @@
 "use server";
 
+import { sendSignUpEmail } from "../inngest/function";
+import { getAllusersForNewsEmail } from "./user.action";
 
 export const functions = inngest()
 .on({ name: 'sendSignUpEmail' }, async ({ event }) => {
@@ -17,7 +19,7 @@ event: 'app/send.daily.news',
 }, async ({ event }) => {
 try {
 // Get list of users eligible for news emails
-const users = await getAllUsersForNewsEmail();
+const users = await getAllusersForNewsEmail();
 if (!users || users.length === 0) return { success: true, details: 'no users' };
 
 

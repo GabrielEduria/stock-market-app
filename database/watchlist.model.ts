@@ -19,7 +19,6 @@ addedAt: { type: Date, default: () => new Date() },
 
 WatchlistSchema.index({ userId: 1, symbol: 1 }, { unique: true });
 
-
 const Watchlist: Model<WatchlistItem> = (mongoose.models?.Watchlist as Model<WatchlistItem>) || mongoose.model<WatchlistItem>('Watchlist', WatchlistSchema);
 
 
