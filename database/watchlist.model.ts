@@ -17,11 +17,9 @@ addedAt: { type: Date, default: () => new Date() },
 });
 
 
-// Compound index so a user can't add the same stock twice
 WatchlistSchema.index({ userId: 1, symbol: 1 }, { unique: true });
 
 
-// Avoid model overwrite issues in development (hot reload)
 const Watchlist: Model<WatchlistItem> = (mongoose.models?.Watchlist as Model<WatchlistItem>) || mongoose.model<WatchlistItem>('Watchlist', WatchlistSchema);
 
 
