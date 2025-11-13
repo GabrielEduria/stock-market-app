@@ -12,9 +12,9 @@ const Header = () => {
            <Image 
             src="/public/assets/icons/logo.svg" 
             alt="Signalist logo" 
-            width={180}
-            height={40} 
-            className="h-15 w-auto cursor-pointer" 
+            width={200}
+            height={50} 
+            className="h-12 w-auto cursor-pointer" 
            />
         </Link>
          <nav className="hidden sm:block">
