@@ -24,7 +24,7 @@ export const signUpWithEmail = async ({ email, password, fullName, country, inve
         }
 
         return { success: true, data: response }
-        
+            
     } catch (e) {
         console.log('Sign up failed', e)
         return { sucess: false, error: 'Sign up failed' }

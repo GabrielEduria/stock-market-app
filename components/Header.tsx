@@ -12,8 +12,8 @@ const Header = () => {
            <Image 
             src="/public/assets/icons/logo.svg" 
             alt="Signalist logo" 
-            width={140}
-            height={32} 
+            width={180}
+            height={40} 
             className="h-8 w-auto cursor-pointer" 
            />
         </Link>
