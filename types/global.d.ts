@@ -78,6 +78,10 @@ declare global {
         email: string;
     };
 
+    type UserForNewsEmail = {
+        email: string;
+        name: string;
+    };
     type Stock = {
         symbol: string;
         name: string;
@@ -135,6 +139,7 @@ declare global {
         company: string;
         currentPrice?: number;
     };
+
 
     type WatchlistTableProps = {
         watchlist: StockWithData[];
