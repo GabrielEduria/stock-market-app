@@ -24,4 +24,4 @@ export async function getWatchlistSymbolsByEmail(email: string): Promise<string[
     console.error('getWatchlistSymbolsByEmail error:', err);
     return [];
   }
-}
+} 

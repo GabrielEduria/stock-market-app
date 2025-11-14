@@ -36,6 +36,7 @@ export async function getNews(symbols?: string[]): Promise<MarketNewsArticle[]> 
 
     const maxArticles = 6;
 
+
     if (cleanSymbols.length > 0) {
       const perSymbolArticles: Record<string, RawNewsArticle[]> = {};
 
@@ -53,7 +54,7 @@ export async function getNews(symbols?: string[]): Promise<MarketNewsArticle[]> 
       );
 
       const collected: MarketNewsArticle[] = [];
-      // Round-robin up to 6 picks
+      
       for (let round = 0; round < maxArticles; round++) {
         for (let i = 0; i < cleanSymbols.length; i++) {
           const sym = cleanSymbols[i];
@@ -68,14 +69,14 @@ export async function getNews(symbols?: string[]): Promise<MarketNewsArticle[]> 
       }
 
       if (collected.length > 0) {
-        // Sort by datetime desc
+        
         collected.sort((a, b) => (b.datetime || 0) - (a.datetime || 0));
         return collected.slice(0, maxArticles);
       }
-      // If none collected, fall through to general news
+      
     }
 
-    // General market news fallback or when no symbols provided
+   
     const generalUrl = `${FINNHUB_BASE_URL}/news?category=general&token=${token}`;
     const general = await fetchJSON<RawNewsArticle[]>(generalUrl, 300);
 
@@ -87,7 +88,7 @@ export async function getNews(symbols?: string[]): Promise<MarketNewsArticle[]> 
       if (seen.has(key)) continue;
       seen.add(key);
       unique.push(art);
-      if (unique.length >= 20) break; // cap early before final slicing
+      if (unique.length >= 20) break;
     }
 
     const formatted = unique.slice(0, maxArticles).map((a, idx) => formatArticle(a, false, undefined, idx));
@@ -102,7 +103,7 @@ export const searchStocks = cache(async (query?: string): Promise<StockWithWatch
   try {
     const token = process.env.FINNHUB_API_KEY ?? NEXT_PUBLIC_FINNHUB_API_KEY;
     if (!token) {
-      // If no token, log and return empty to avoid throwing per requirements
+     
       console.error('Error in stock search:', new Error('FINNHUB API key is not configured'));
       return [];
     }
@@ -112,14 +113,13 @@ export const searchStocks = cache(async (query?: string): Promise<StockWithWatch
     let results: FinnhubSearchResult[] = [];
 
     if (!trimmed) {
-      // Fetch top 10 popular symbols' profiles
+      
       const top = POPULAR_STOCK_SYMBOLS.slice(0, 10);
       const profiles = await Promise.all(
         top.map(async (sym) => {
           try {
             const url = `${FINNHUB_BASE_URL}/stock/profile2?symbol=${encodeURIComponent(sym)}&token=${token}`;
-       
-          
+            
             const profile = await fetchJSON<any>(url, 3600);
             return { sym, profile } as { sym: string; profile: any };
           } catch (e) {
@@ -142,7 +142,6 @@ export const searchStocks = cache(async (query?: string): Promise<StockWithWatch
             type: 'Common Stock',
           };
 
-        
           (r as any).__exchange = exchange; 
           return r;
         })

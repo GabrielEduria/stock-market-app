@@ -1,8 +1,8 @@
-import {inngest} from "@/lib/inngest/client";
-import {NEWS_SUMMARY_EMAIL_PROMPT, PERSONALIZED_WELCOME_EMAIL_PROMPT} from "@/lib/inngest/prompts";
-import {sendNewsSummaryEmail, sendWelcomeEmail} from "@/lib/nodemailer";
-import {getAllUsersForNewsEmail} from "@/lib/actions/user.actions";
-import { getWatchlistSymbolsByEmail } from "@/lib/actions/watchlist.actions";
+import { inngest } from "@/lib/inngest/client";
+import { NEWS_SUMMARY_EMAIL_PROMPT, PERSONALIZED_WELCOME_EMAIL_PROMPT } from "@/lib/inngest/prompts";
+import { sendNewsSummaryEmail, sendWelcomeEmail } from "@/lib/nodemailer";
+import { getAllusersForNewsEmail } from "../actions/user.actions";
+import { getWatchlistSymbolsByEmail } from "../actions/watchlist-actions";
 import { getNews } from "@/lib/actions/finnhub.actions";
 import { getFormattedTodayDate } from "@/lib/utils";
 
@@ -52,12 +52,12 @@ export const sendDailyNewsSummary = inngest.createFunction(
     { id: 'daily-news-summary' },
     [ { event: 'app/send.daily.news' }, { cron: '0 12 * * *' } ],
     async ({ step }) => {
-        // Step #1: Get all users for news delivery
-        const users = await step.run('get-all-users', getAllUsersForNewsEmail)
+        // Get all users for news delivery
+        const users = await step.run('get-all-users', getAllusersForNewsEmail)
 
         if(!users || users.length === 0) return { success: false, message: 'No users found for news email' };
 
-        // Step #2: For each user, get watchlist symbols -> fetch news (fallback to general)
+        // For each user, get watchlist symbols -> fetch news (fallback to general)
         const results = await step.run('fetch-user-news', async () => {
             const perUser: Array<{ user: UserForNewsEmail; articles: MarketNewsArticle[] }> = [];
             for (const user of users as UserForNewsEmail[]) {
@@ -80,7 +80,7 @@ export const sendDailyNewsSummary = inngest.createFunction(
             return perUser;
         });
 
-        // Step #3: (placeholder) Summarize news via AI
+        // (placeholder) Summarize news via AI
         const userNewsSummaries: { user: UserForNewsEmail; newsContent: string | null }[] = [];
 
         for (const { user, articles } of results) {
@@ -104,7 +104,7 @@ export const sendDailyNewsSummary = inngest.createFunction(
                 }
             }
 
-        // Step #4: (placeholder) Send the emails
+        // (placeholder) Send the emails
         await step.run('send-news-emails', async () => {
                 await Promise.all(
                     userNewsSummaries.map(async ({ user, newsContent}) => {
