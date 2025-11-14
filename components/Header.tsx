@@ -18,7 +18,7 @@ const Header = () => {
            />
         </Link>
          <nav className="hidden sm:block">
-              <NavItems />
+              <NavItems initialStocks={[]} />
         </nav>
         <UserDropdown />
       </div>
