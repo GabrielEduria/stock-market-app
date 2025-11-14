@@ -22,7 +22,7 @@ export default function layout ({ children }: { children : React.ReactNode}) {
         <section className="auth-right-section">
             <div className="z-10 relative lg:mt-4 lg:mb-16">
                 <blockquote className="auth-blockquote">
-                    Stockmarket app by <a href="https://gabrieleduria.com" className="text-blue-400 underline hover:text-red-400 transition-0.2s">Gabbbyyyy</a>  to help you check out the current market live.
+                    StockQER a Stock-Market Tracker Project by <a href="https://gabrieleduria.com" className="text-blue-400 underline hover:text-red-400 transition-0.2s">Gabbbyyyy</a>  to help you check out the current market live.
                 </blockquote>
                 <div className="flex items-center justify-between">
            
