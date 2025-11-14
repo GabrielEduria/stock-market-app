@@ -79,16 +79,7 @@ export const sendDailyNewsSummary = inngest.createFunction(
                 }
 
                 // Placeholder: Summarize news via AI
-                const userNewsSummaries: { user: User; newsContent: string | null}[] = [];
-
-                for (const { user, news} of results) {
-                    try {
-
-                    } catch (e) {
-                        console.error('Failed to summarize news for : ', user.email);
-                    }
-                }
-
+               
                 // const summary = await step.ai.infer('summarize-news', { ... });
 
                 // Placeholder: Send the emails
