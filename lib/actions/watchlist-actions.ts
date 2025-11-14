@@ -4,15 +4,22 @@ import { connectToDatabase } from '@/database/mongoose';
 import Watchlist from '@/database/watchlist.model';
 import mongoose from 'mongoose';
 
+interface IUser {
+    email: string;
+    _id?: mongoose.Types.ObjectId;
+    id?: string;
+}
 
 export async function getWatchlistSymbolsByEmail(email: string): Promise<string[]> {
     try {
         await connectToDatabase();
 
-
-
-        const User = mongoose.models?.User || mongoose.model('User', new mongoose.Schema({}, { strict: false }), 'users');
-
+        const UserSchema = new mongoose.Schema<IUser>({
+            email: { type: String, required: true },
+            _id: { type: mongoose.Schema.Types.ObjectId },
+            id: { type: String }
+        }, { strict: false });
+        const User = mongoose.models?.User || mongoose.model<IUser>('User', UserSchema, 'users');
 
         const userDoc = await User.findOne({ email }).lean();
         if (!userDoc) return [];
