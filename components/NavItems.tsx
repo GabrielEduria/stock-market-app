@@ -18,7 +18,7 @@ const NavItems = () => {
     <ul className="flex flex-col sm:flex-row p-2 gap-3 sm:gap-10 font-medium">
         {NAV_ITEMS.map(({ href, label }) => {
 
-          if(href === 'Search') return (
+          if(label === 'Search') return (
             <li key="search-trigger">
                 <SearchCommand 
                   label="Search"
