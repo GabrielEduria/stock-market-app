@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Stock Market",
+  title: "StockQer - Personalized Stock Market",
   description: "Stock Market to track real time stock prices, get personalized alerts and explore detailed company insights.",
 };
 
