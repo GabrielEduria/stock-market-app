@@ -24,6 +24,6 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "test-mongo.js", "test-mongo.js"  ],
   "exclude": ["node_modules"]
 }
