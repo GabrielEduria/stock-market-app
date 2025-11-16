@@ -1,5 +1,5 @@
 import TradingViewWidget from '@/components/charts/TradingViewWidget'
-import { HEATMAP_WIDGET_CONFIG, MARKET_DATA_WIDGET_CONFIG, TOP_STORIES_WIDGET_CONFIG } from '@/lib/constants'
+import { HEATMAP_WIDGET_CONFIG, MARKET_DATA_WIDGET_CONFIG, TOP_STORIES_WIDGET_CONFIG, TECHNICAL_ANALYSIS_WIDGET_CONFIG, CRYPTO_SCREENER_CONFIG } from '@/lib/constants'
 
 export default function Home () {
 
@@ -44,6 +44,26 @@ export default function Home () {
                 height={600}
               />
           </div>
+
+          <div className='md:col-span-1 xl:col-span-1'>
+            <TradingViewWidget
+              scriptURL={`${scriptUrl}technical-analysis.js`} 
+              config={TECHNICAL_ANALYSIS_WIDGET_CONFIG('BTC')} 
+              className="custom-chart"
+              height={600}
+            />
+          </div>
+
+          <div className='md-col-span xl:col-span-2'>
+              <TradingViewWidget  
+                title="Crypto Market"
+                scriptURL={"https://s3.tradingview.com/external-embedding/embed-widget-screener.js"}
+                config={CRYPTO_SCREENER_CONFIG} 
+                className="custom-chart"
+                height={600}
+              />
+          </div>
+
        </section>
     </div>
   )

@@ -261,6 +261,17 @@ export const COMPANY_FINANCIALS_WIDGET_CONFIG = (symbol: string) => ({
     largeChartUrl: '',
 });
 
+export const CRYPTO_SCREENER_CONFIG = {
+  defaultColumn: "overview",
+  screener_type: "crypto_mkt",
+  displayCurrency: "USD",
+  colorTheme: "dark",
+  isTransparent: false,
+  locale: "en",
+  width: "100%",
+  height: 550,
+};
+
 export const POPULAR_STOCK_SYMBOLS = [
 
     'AAPL',
