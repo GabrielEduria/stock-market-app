@@ -57,7 +57,7 @@ export default function Home () {
           <div className='md-col-span xl:col-span-2'>
               <TradingViewWidget  
                 title="Crypto Market"
-                scriptURL={"https://s3.tradingview.com/external-embedding/embed-widget-screener.js"}
+                scriptURL={`${scriptUrl}screener.js`}
                 config={CRYPTO_SCREENER_CONFIG} 
                 className="custom-chart"
                 height={600}
