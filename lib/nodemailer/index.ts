@@ -15,9 +15,9 @@ export const sendWelcomeEmail = async ({ email, name, intro}: WelcomeEmailData) 
             .replace('{{intro}}', intro);
 
     const mailOptions = {
-        from: `Stock-Market-App <gabrielezekieleduria@gmail.com>`,
+        from: `StockQer <gabrielezekieleduria@gmail.com>`,
         to: email,
-        subject: "Welcome to Stock-Market-App by Gabbbyyyy",
+        subject: "Welcome to StockQerby Gabbbyyyy",
         text: 'Welcome to StockQer a side project by Gabbbyyyy',
         html: htmlTemplate,
     }
