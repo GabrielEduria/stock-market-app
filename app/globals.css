@@ -334,9 +334,6 @@
   .news-meta {
     @apply flex items-center text-sm text-gray-500 mb-1;
   }
-  .news-summary {
-    @apply text-gray-400 flex-1 text-base leading-relaxed mb-3 line-clamp-3;
-  }
   .news-cta {
     @apply text-sm align-bottom text-yellow-500 hover:text-gray-400;
   }
